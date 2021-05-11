@@ -20,7 +20,7 @@ class Fib(GameScreen):
     def __init__(self):
         pygame.init()
         real_size = Point(600, 600)
-        size = Point(real_size.x // 1, real_size.y // 1)
+        size = Point(real_size.x // 2, real_size.y // 2)
         super().__init__(pygame.display.set_mode(real_size), real_size, size)
         self.center = Point(self.window_size.x / 2, self.window_size.y / 2)
         self.colors = {
@@ -28,6 +28,7 @@ class Fib(GameScreen):
                 'fg': 'white',
                 }
         self.starting_size = 1
+        self.max_size = max(self.window_size.x, self.window_size.y) * 2
 
     def draw(self):
         count = 0
@@ -36,7 +37,7 @@ class Fib(GameScreen):
         size = self.starting_size
         rect = pygame.Rect(*self.center, 0, 0)
         density = 30
-        while size < 300:
+        while size < self.max_size:
             if (c := count % 4) == 0:
                 new_pos = Point(
                         rect.x,
@@ -82,8 +83,8 @@ class Fib(GameScreen):
                         density
                         )
             rect = pygame.Rect(*new_pos, size, size)
-            pygame.draw.rect(self.screen, self.colors['fg'], rect, 1)
-            pygame.draw.aalines(self.screen, self.colors['fg'], False, curve)
+            pygame.draw.rect(self.screen, self.colors['fg'], rect, 1) # draw the boxes
+            pygame.draw.lines(self.screen, self.colors['fg'], False, curve) # draw the curve
             prev2_size = prev_size
             prev_size, size = size, prev_size + size
             count += 1
