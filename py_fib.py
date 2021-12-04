@@ -20,7 +20,7 @@ class Fib(GameScreen):
     def __init__(self):
         pygame.init()
         real_size = Point(600, 600)
-        size = Point(real_size.x // 2, real_size.y // 2)
+        size = real_size
         super().__init__(pygame.display.set_mode(real_size), real_size, size)
         self.center = Point(self.window_size.x / 2, self.window_size.y / 2)
         self.colors = {
