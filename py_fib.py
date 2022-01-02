@@ -6,7 +6,7 @@ from pygame_tools import *
 class Fib(GameScreen):
     def __init__(self):
         pygame.init()
-        size = Point(600, 600)
+        size = Point(1400, 750)
         super().__init__(pygame.display.set_mode(size), size)
         self.center = Point(self.window_size.x / 2, self.window_size.y / 2)
         self.colors = {
